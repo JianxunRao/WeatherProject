@@ -9,11 +9,17 @@ import { StyleSheet,
     TextInput,
     Image,
     ToastAndroid} from 'react-native';
+import Forecast from './Forecast';
 
 var WeatherProject=React.createClass({
     getInitialState(){
         return({
             zip:'',
+            forecast:{
+                main:'Clouds',
+                description:'few clouds',
+                temp:45.7,
+            }
         });
     },
     _handleTextChange(event){
@@ -29,8 +35,13 @@ var WeatherProject=React.createClass({
                 <Text style={styles.welcome}>
                     Your input is{this.state.zip}.
                 </Text>
+                <Forecast
+                main={this.state.forecast.main}
+                description={this.state.forecast.description}
+                temp={this.state.forecast.temp}/>
                 <TextInput style={styles.input}
-                onSubmitEditing={this._handleTextChange}/>
+                onSubmitEditing={this._handleTextChange}
+                returnKeyType='go'/>
             </View>
         );
     }
@@ -41,7 +52,7 @@ var styles=StyleSheet.create({
        flex:1,
        justifyContent:'center',
        alignItems:'center',
-       backgroundColor:'#F5FCFF',
+       backgroundColor:'#4D4D4D',
    },
     welcome:{
        fontSize:20,
@@ -52,7 +63,6 @@ var styles=StyleSheet.create({
        fontSize:20,
         borderWidth:2,
         height:40,
-        width:100,
     }
 });
 
